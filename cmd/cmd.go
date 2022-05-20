@@ -3,7 +3,6 @@ package cmd
 import (
 	"MoMathF/global"
 	mlog "MoMathF/mo-log"
-	"flag"
 	"github.com/atotto/clipboard"
 )
 
@@ -12,13 +11,12 @@ var (
 )
 
 func GetLatexFromPicAndCopyLatexToClipboard() {
-	path := flag.String("path", "", "path to the pic")
-	flag.Parse()
-	if *path == "" {
+	path := global.GB_CONFIG.PicPath
+	if path == "" {
 		log.Fatalln("path can't be empty")
 	}
-	log.Println("path:", *path)
-	res, err := global.GB_Client.GetLatexFromPic(*path)
+	log.Println("path:", path)
+	res, err := global.GB_Client.GetLatexFromPic(path)
 	if err != nil {
 		log.Fatalln(err)
 	}
