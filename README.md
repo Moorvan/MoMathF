@@ -3,7 +3,7 @@ Call MathPix API to convert image to Latex formula
 
 ## API
 
-We call the API from MathPix, you can apply for it from https://accounts.mathpix.com/account. You can fill id and key in the config_git.yaml and rename the file to config.yaml:
+We call the API from MathPix, you can apply for it from https://accounts.mathpix.com/account. You can fill id and key in the config_git.yaml.
 
 ```yaml
 api:
@@ -19,8 +19,20 @@ go build -tags dev/prod -o ./build
 
 ## Run
 
+Usage:
+
 ```shell
-./build/MoMathF -path ./testPics/1.png
+Usage of MoMathF:
+  -config string
+        config file path (default "./config.yaml")
+  -image string
+        image file path
+```
+
+cmd:
+
+```shell
+./build/MoMathF -config ./config_git.yaml -image ./testPics/1.png
 ```
 
 The following content will be copied to your clipboard:
