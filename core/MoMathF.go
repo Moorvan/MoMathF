@@ -15,10 +15,10 @@ func NewMoMathF() *MathFClient.MoMathFClient {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	res, err := mathFClient.GetLatexFromPicUrl("https://mathpix-ocr-examples.s3.amazonaws.com/cases_hw.jpg")
-	if err != nil || res == "" {
-		log.Fatalln("Connect to Server Error:", err)
-	}
-	log.Println(res)
+	//res, err := mathFClient.GetLatexFromPicUrl("https://mathpix-ocr-examples.s3.amazonaws.com/cases_hw.jpg")
+	//if err != nil || res == "" {
+	//	log.Fatalln("Connect to Server Error:", err)
+	//}
+	//log.Println(res)
 	return mathFClient
 }
