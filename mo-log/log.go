@@ -48,7 +48,7 @@ func init() {
 		if err != nil {
 			panic(err.Error())
 		}
-		w = f
+		w = io.MultiWriter(f, os.Stdout)
 	}
 	Log = logger{Logger: log.New(w, "", log.LstdFlags)}
 }

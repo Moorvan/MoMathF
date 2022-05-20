@@ -3,6 +3,7 @@ module MoMathF
 go 1.18
 
 require (
+	github.com/atotto/clipboard v0.1.4
 	github.com/fsnotify/fsnotify v1.5.1
 	github.com/go-resty/resty/v2 v2.7.0
 	github.com/spf13/viper v1.11.0
