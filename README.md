@@ -27,12 +27,14 @@ Usage of MoMathF:
         config file path (default "./config.yaml")
   -image string
         image file path
+  -log string
+        log file path
 ```
 
 cmd:
 
 ```shell
-./build/MoMathF -config ./config_git.yaml -image ./testPics/1.png
+./build/MoMathF -config ./config_git.yaml -log ./output.log -image ./testPics/1.png
 ```
 
 The following content will be copied to your clipboard:
