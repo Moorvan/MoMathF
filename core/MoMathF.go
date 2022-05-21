@@ -3,7 +3,6 @@ package core
 import (
 	"MoMathF/MathFClient"
 	"MoMathF/global"
-	"log"
 )
 
 func NewMoMathF() *MathFClient.MoMathFClient {

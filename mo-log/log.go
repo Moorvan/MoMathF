@@ -40,15 +40,24 @@ func init() {
 	//}
 
 	var w io.Writer
-	if Debug {
-		//w = io.MultiWriter(f, os.Stdout)
-		w = os.Stdout
-	} else {
-		f, err := os.OpenFile("./output.log", os.O_CREATE|os.O_APPEND|os.O_RDWR, os.FileMode(0666))
-		if err != nil {
-			panic(err.Error())
-		}
-		w = io.MultiWriter(f, os.Stdout)
-	}
+	//if Debug {
+	//	//w = io.MultiWriter(f, os.Stdout)
+	//	w = os.Stdout
+	//} else {
+	//	f, err := os.OpenFile("./output.log", os.O_CREATE|os.O_APPEND|os.O_RDWR, os.FileMode(0666))
+	//	if err != nil {
+	//		panic(err.Error())
+	//	}
+	//	w = io.MultiWriter(f, os.Stdout)
+	//}
+	w = os.Stdout
 	Log = logger{Logger: log.New(w, "", log.LstdFlags)}
+}
+
+func AddLogOutputFile(file string) {
+	f, err := os.OpenFile(file, os.O_CREATE|os.O_APPEND|os.O_RDWR, os.FileMode(0666))
+	if err != nil {
+		Log.Errorln("AddLogOutputFile:", err)
+	}
+	Log.Logger.SetOutput(io.MultiWriter(Log.Logger.Writer(), f))
 }

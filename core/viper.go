@@ -6,15 +6,23 @@ import (
 	"flag"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
-	"log"
+)
+
+var (
+	log = mlog.Log
 )
 
 func Viper(path string) *viper.Viper {
 	flag.StringVar(&global.GB_CONFIG.ConfigPath, "config", path, "config file path")
 	flag.StringVar(&global.GB_CONFIG.PicPath, "image", "", "image file path")
+	flag.StringVar(&global.GB_CONFIG.LogPath, "log", "", "log file path")
 	flag.Parse()
+	if global.GB_CONFIG.LogPath != "" {
+		mlog.AddLogOutputFile(global.GB_CONFIG.LogPath)
+	}
 	log.Println("config path:", global.GB_CONFIG.ConfigPath)
 	log.Println("image path:", global.GB_CONFIG.PicPath)
+	log.Println("log path:", global.GB_CONFIG.LogPath)
 	v := viper.New()
 	v.SetConfigType("yaml")
 	v.SetConfigFile(global.GB_CONFIG.ConfigPath)
