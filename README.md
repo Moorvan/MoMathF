@@ -1,4 +1,4 @@
-# MoMathF
+# MoMathF Server
 Call MathPix API to convert image to Latex formula
 
 ## API
@@ -15,31 +15,5 @@ api:
 
 ```shell
 go build -tags dev/prod -o ./build
-```
-
-## Run
-
-Usage:
-
-```shell
-Usage of MoMathF:
-  -config string
-        config file path (default "./config.yaml")
-  -image string
-        image file path
-  -log string
-        log file path
-```
-
-cmd:
-
-```shell
-./build/MoMathF -config ./config_git.yaml -log ./output.log -image ./testPics/1.png
-```
-
-The following content will be copied to your clipboard:
-
-```txt
-\varphi^{k} \stackrel{\operatorname{def}}{=} I\left(V^{0}\right) \wedge \operatorname{path}^{0, k} \wedge\left(\neg P\left(V^{k}\right)\right)
 ```
 
