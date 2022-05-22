@@ -20,9 +20,9 @@ func Viper(path string) *viper.Viper {
 	if global.GB_CONFIG.LogPath != "" {
 		mlog.AddLogOutputFile(global.GB_CONFIG.LogPath)
 	}
-	log.Println("config path:", global.GB_CONFIG.ConfigPath)
-	log.Println("image path:", global.GB_CONFIG.PicPath)
-	log.Println("log path:", global.GB_CONFIG.LogPath)
+	//log.Println("config path:", global.GB_CONFIG.ConfigPath)
+	//log.Println("image path:", global.GB_CONFIG.PicPath)
+	//log.Println("log path:", global.GB_CONFIG.LogPath)
 	v := viper.New()
 	v.SetConfigType("yaml")
 	v.SetConfigFile(global.GB_CONFIG.ConfigPath)

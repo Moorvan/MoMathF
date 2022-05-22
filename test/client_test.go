@@ -29,7 +29,7 @@ func init() {
 		"app_id":  apiId,
 		"app_key": apiKey,
 	})
-	mathClient = core.NewMoMathF()
+	mathClient = core.NewClient()
 }
 
 func TestConnect(t *testing.T) {

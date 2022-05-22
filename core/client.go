@@ -5,7 +5,7 @@ import (
 	"MoMathF/global"
 )
 
-func NewMoMathF() *MathFClient.MoMathFClient {
+func NewClient() *MathFClient.MoMathFClient {
 	config := &MathFClient.APIConfig{
 		ApiId:  global.GB_CONFIG.Api.ApiId,
 		ApiKey: global.GB_CONFIG.Api.ApiKey,

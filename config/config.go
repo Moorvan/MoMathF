@@ -5,4 +5,5 @@ type Config struct {
 	ConfigPath string
 	PicPath    string
 	LogPath    string
+	ServerPort int `mapstructure:"server-port" json:"server-port"`
 }
