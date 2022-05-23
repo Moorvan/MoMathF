@@ -4,6 +4,7 @@ import (
 	"MoMathF/global"
 	mlog "MoMathF/mo-log"
 	"github.com/gofiber/fiber/v2"
+	"os"
 )
 
 type Service struct{}
@@ -37,6 +38,7 @@ func (service *Service) GetLatexFromPic(ctx *fiber.Ctx) error {
 	if err != nil {
 		return err
 	}
+	_ = os.Remove(path)
 
 	return ctx.SendString(latex)
 }
