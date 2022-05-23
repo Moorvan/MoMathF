@@ -8,6 +8,6 @@ import (
 
 func RunServer() {
 	server := MathFServer.New()
-	addr := fmt.Sprintf(":%d", global.GB_CONFIG.ServerPort)
+	addr := fmt.Sprintf(":%d", global.GB_CONFIG.ServerCfg.Port)
 	log.Fatalln(server.Listen(addr))
 }

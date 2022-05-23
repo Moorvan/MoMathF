@@ -14,6 +14,7 @@ func main() {
 	log.Println("Start...")
 	global.GB_VP = core.Viper("./config.yaml")
 	global.GB_Client = core.NewClient()
+	log.PrintStruct(global.GB_CONFIG)
 	//cmd.GetLatexFromPicAndCopyLatexToClipboard()
 	core.RunServer()
 }
