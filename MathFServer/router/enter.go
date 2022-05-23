@@ -11,5 +11,4 @@ var RouterApp = new(Router)
 
 func (r *Router) InitGetLatexFromPicRouter(router fiber.Router) {
 	router.Get("/", api.ServiceApp.GetLatexFromPic)
-
 }
