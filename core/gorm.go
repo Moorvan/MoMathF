@@ -1,7 +1,9 @@
 package core
 
 import (
+	"MoMathF/MathFServer/model"
 	"MoMathF/global"
+	mlog "MoMathF/mo-log"
 	"errors"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -20,4 +22,13 @@ func Gorm() *gorm.DB {
 		panic(err)
 	}
 	return db
+}
+
+func RegisterTables() {
+	if err := global.GB_DB.AutoMigrate(
+		model.User{},
+	); err != nil {
+		panic(err)
+	}
+	mlog.Log.Println("Register tables success")
 }
