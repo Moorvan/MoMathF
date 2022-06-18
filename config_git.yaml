@@ -5,3 +5,9 @@ api:
 server:
   port: 8080
   cache-path: ./cache
+  pgsql:
+    path: localhost
+    port: 5432
+    db-name: xxx
+    username: xxx
+    password: xxxxxxxxxx
