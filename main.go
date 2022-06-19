@@ -13,7 +13,7 @@ var (
 func main() {
 	log.Println("Start...")
 	global.GB_VP = core.Viper("./config.yaml")
-	log.PrintStruct(global.GB_CONFIG)
+	//log.PrintStruct(global.GB_CONFIG)
 	global.GB_Client = core.NewClient()
 	global.GB_DB = core.Gorm()
 	core.RegisterTables()

@@ -12,6 +12,7 @@ func New() *fiber.App {
 	publicGroup := app.Group("")
 	{
 		router.RouterGroupApp.InitMathRouter(publicGroup)
+		router.RouterGroupApp.InitUserRouter(publicGroup)
 	}
 	return app
 }

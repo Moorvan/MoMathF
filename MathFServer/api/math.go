@@ -1,6 +1,7 @@
 package api
 
 import (
+	"MoMathF/MathFServer/model/common/response"
 	"MoMathF/MathFServer/service"
 	"MoMathF/global"
 	"github.com/gofiber/fiber/v2"
@@ -14,11 +15,13 @@ var mathService = service.ServiceGroupApp.MathService
 func (api *MathAPI) GetLatexFromPic(ctx *fiber.Ctx) error {
 	form, err := ctx.MultipartForm()
 	if err != nil {
-		return err
+		response.FailWithMsg("can't get multipartForm", ctx)
+		return nil
 	}
 	files := form.File["img"]
 	if len(files) == 0 {
-		return ctx.SendString("File Empty")
+		response.FailWithMsg("can't get file", ctx)
+		return nil
 	}
 
 	file := files[0]
@@ -38,5 +41,7 @@ func (api *MathAPI) GetLatexFromPic(ctx *fiber.Ctx) error {
 	}
 	_ = os.Remove(path)
 
-	return ctx.SendString(latex)
+	response.OkWithData(map[string]string{"latex": latex}, ctx)
+
+	return nil
 }
