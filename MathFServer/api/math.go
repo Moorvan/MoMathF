@@ -15,13 +15,11 @@ var mathService = service.ServiceGroupApp.MathService
 func (api *MathAPI) GetLatexFromPic(ctx *fiber.Ctx) error {
 	form, err := ctx.MultipartForm()
 	if err != nil {
-		response.FailWithMsg("can't get multipartForm", ctx)
-		return nil
+		return response.FailWithMsg("can't get multipartForm", ctx)
 	}
 	files := form.File["img"]
 	if len(files) == 0 {
-		response.FailWithMsg("can't get file", ctx)
-		return nil
+		return response.FailWithMsg("can't get file", ctx)
 	}
 
 	file := files[0]
@@ -32,16 +30,14 @@ func (api *MathAPI) GetLatexFromPic(ctx *fiber.Ctx) error {
 	path += file.Filename
 
 	if err := ctx.SaveFile(file, path); err != nil {
-		return err
+		return response.FailWithMsg("can't save file", ctx)
 	}
 
 	latex, err := mathService.GetLatexFromPic(path)
 	if err != nil {
-		return err
+		return response.FailWithMsg(err.Error(), ctx)
 	}
 	_ = os.Remove(path)
 
-	response.OkWithData(map[string]string{"latex": latex}, ctx)
-
-	return nil
+	return response.OkWithData(map[string]string{"latex": latex}, ctx)
 }
