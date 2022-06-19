@@ -10,6 +10,7 @@ type MathRouter struct{}
 func (r *MathRouter) InitMathRouter(router fiber.Router) {
 	mathRouter := router.Group("/math")
 	{
-		mathRouter.Get("/get", api.ServiceApp.GetLatexFromPic)
+		mathApi := api.APIGroupApp.MathAPI
+		mathRouter.Get("/get", mathApi.GetLatexFromPic)
 	}
 }

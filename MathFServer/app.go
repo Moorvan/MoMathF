@@ -9,10 +9,9 @@ import (
 func New() *fiber.App {
 	app := fiber.New()
 	app.Use(logger.New())
-
-	group := app.Group("")
+	publicGroup := app.Group("")
 	{
-		router.RouterApp.InitGetLatexFromPicRouter(group)
+		router.RouterGroupApp.InitMathRouter(publicGroup)
 	}
 	return app
 }
