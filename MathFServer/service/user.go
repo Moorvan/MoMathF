@@ -20,6 +20,15 @@ func (service *UserService) Register(user model.User) error {
 	return nil
 }
 
-func (service *UserService) Login() {
-
+func (service *UserService) Login(user model.User) (model.User, error) {
+	db := global.GB_DB
+	email := user.Email
+	var u model.User
+	if err := db.Model(&u).Where("email = ?", email).First(&u).Error; err != nil {
+		return u, errors.New("email not exists")
+	}
+	if u.Password != user.Password {
+		return u, errors.New("password error")
+	}
+	return u, nil
 }

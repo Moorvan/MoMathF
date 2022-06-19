@@ -2,12 +2,16 @@ package api
 
 import (
 	"MoMathF/MathFServer/model"
-	"MoMathF/MathFServer/model/common/response"
+	resp "MoMathF/MathFServer/model/common/response"
 	"MoMathF/MathFServer/model/request"
+	"MoMathF/MathFServer/model/response"
 	"MoMathF/MathFServer/service"
 	"MoMathF/MathFServer/utils"
+	"MoMathF/global"
 	"github.com/gofiber/fiber/v2"
 	fiberUtils "github.com/gofiber/fiber/v2/utils"
+	"github.com/golang-jwt/jwt/v4"
+	"time"
 )
 
 type UserAPI struct{}
@@ -15,16 +19,53 @@ type UserAPI struct{}
 var userService = service.ServiceGroupApp.UserService
 
 func (u *UserAPI) Login(ctx *fiber.Ctx) error {
-	return nil
+	var r request.Login
+	if err := ctx.BodyParser(&r); err != nil {
+		return resp.FailWithMsg("parse request error: "+err.Error(), ctx)
+	}
+	if err := validate.Struct(r); err != nil {
+		return resp.FailWithMsg("validate request error: "+err.Error(), ctx)
+	}
+	user := model.User{
+		Email:    r.Email,
+		Password: utils.MD5V(r.Password),
+	}
+	if rUser, err := userService.Login(user); err != nil {
+		return resp.FailWithMsg(err.Error(), ctx)
+	} else {
+		token, err := u.getToken(rUser)
+		if err != nil {
+			return resp.FailWithMsg(err.Error(), ctx)
+		}
+		return resp.OkWithData(response.Login{
+			Token: token,
+			UUID:  rUser.UUID,
+		}, ctx)
+	}
+}
+
+func (u *UserAPI) getToken(user model.User) (string, error) {
+	cfg := global.GB_CONFIG.ServerCfg.JWT
+	var claims = jwt.MapClaims{
+		"uuid": user.UUID,
+		"name": user.UserName,
+		"exp":  time.Now().Add(time.Second * time.Duration(cfg.ExpiresTime)).Unix(),
+	}
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	t, err := token.SignedString([]byte(cfg.SigningKey))
+	if err != nil {
+		return "", err
+	}
+	return t, nil
 }
 
 func (u *UserAPI) Register(ctx *fiber.Ctx) error {
 	var r request.Register
 	if err := ctx.BodyParser(&r); err != nil {
-		return response.FailWithMsg("parse request error: "+err.Error(), ctx)
+		return resp.FailWithMsg("parse request error: "+err.Error(), ctx)
 	}
 	if err := validate.Struct(r); err != nil {
-		return response.FailWithMsg("validate request error: "+err.Error(), ctx)
+		return resp.FailWithMsg("validate request error: "+err.Error(), ctx)
 	}
 	user := model.User{
 		UUID:      fiberUtils.UUIDv4(),
@@ -35,7 +76,7 @@ func (u *UserAPI) Register(ctx *fiber.Ctx) error {
 	}
 
 	if err := userService.Register(user); err != nil {
-		return response.FailWithMsg(err.Error(), ctx)
+		return resp.FailWithMsg(err.Error(), ctx)
 	}
-	return response.Ok(ctx)
+	return resp.Ok(ctx)
 }
