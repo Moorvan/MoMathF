@@ -11,3 +11,6 @@ server:
     db-name: xxx
     username: xxx
     password: xxxxxxxxxx
+  jwt:
+    signing-key: don't-tell-others
+    expires-time: 604800
