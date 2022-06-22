@@ -15,8 +15,16 @@ type MathAPI struct{}
 var mathService = service.ServiceGroupApp.MathService
 
 func (api *MathAPI) GetLatexFromPic(ctx *fiber.Ctx) error {
-	if err := api.checkUser(ctx); err != nil {
+	uuid, err := api.checkUser(ctx)
+	if err != nil {
 		return response.FailWithMsg(err.Error(), ctx)
+	}
+	remaining, err := mathService.QueryRemaining(uuid)
+	if err != nil {
+		return response.FailWithMsg("internal error", ctx)
+	}
+	if remaining <= 0 {
+		return response.FailWithMsg("remaining is 0", ctx)
 	}
 	form, err := ctx.MultipartForm()
 	if err != nil {
@@ -44,15 +52,18 @@ func (api *MathAPI) GetLatexFromPic(ctx *fiber.Ctx) error {
 	}
 	_ = os.Remove(path)
 
+	if err := mathService.Consume1(uuid); err != nil {
+		return response.FailWithMsg("internal error", ctx)
+	}
 	return response.OkWithData(map[string]string{"latex": latex}, ctx)
 }
 
-func (api *MathAPI) checkUser(ctx *fiber.Ctx) error {
+func (api *MathAPI) checkUser(ctx *fiber.Ctx) (string, error) {
 	user := ctx.Locals("user").(*jwt.Token)
 	claims := user.Claims.(jwt.MapClaims)
 	uuid := claims["uuid"].(string)
 	if uuid != ctx.FormValue("uuid") {
-		return errors.New("user not match")
+		return "", errors.New("user not match")
 	}
-	return nil
+	return uuid, nil
 }
