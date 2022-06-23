@@ -23,11 +23,11 @@ func (service *MathService) Consume1(uuid string) error {
 	return nil
 }
 
-func (service MathService) QueryRemaining(uuid string) (int, error) {
+func (service MathService) QueryUserInfo(uuid string) (*model.User, error) {
 	db := global.GB_DB
-	var remaining int
-	if err := db.Model(&model.User{UUID: uuid}).Select("remaining").First(&remaining).Error; err != nil {
-		return 0, err
+	var user model.User
+	if err := db.Model(&model.User{UUID: uuid}).First(&user).Error; err != nil {
+		return nil, err
 	}
-	return remaining, nil
+	return &user, nil
 }

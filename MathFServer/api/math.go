@@ -1,6 +1,7 @@
 package api
 
 import (
+	"MoMathF/MathFServer/model"
 	"MoMathF/MathFServer/model/common/response"
 	"MoMathF/MathFServer/service"
 	"MoMathF/global"
@@ -19,11 +20,11 @@ func (api *MathAPI) GetLatexFromPic(ctx *fiber.Ctx) error {
 	if err != nil {
 		return response.FailWithMsg(err.Error(), ctx)
 	}
-	remaining, err := mathService.QueryRemaining(uuid)
+	user, err := mathService.QueryUserInfo(uuid)
 	if err != nil {
 		return response.FailWithMsg("internal error", ctx)
 	}
-	if remaining <= 0 {
+	if user.VipLevel != model.Lv2 && user.Remaining <= 0 {
 		return response.FailWithMsg("remaining is 0", ctx)
 	}
 	form, err := ctx.MultipartForm()
@@ -51,9 +52,10 @@ func (api *MathAPI) GetLatexFromPic(ctx *fiber.Ctx) error {
 		return response.FailWithMsg(err.Error(), ctx)
 	}
 	_ = os.Remove(path)
-
-	if err := mathService.Consume1(uuid); err != nil {
-		return response.FailWithMsg("internal error", ctx)
+	if user.VipLevel != model.Lv2 {
+		if err := mathService.Consume1(uuid); err != nil {
+			return response.FailWithMsg("internal error", ctx)
+		}
 	}
 	return response.OkWithData(map[string]string{"latex": latex}, ctx)
 }

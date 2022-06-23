@@ -72,7 +72,8 @@ func (u *UserAPI) Register(ctx *fiber.Ctx) error {
 		UserName:  r.UserName,
 		Email:     r.Email,
 		Password:  utils.MD5V(r.Password),
-		Remaining: 100,
+		Remaining: 10,
+		VipLevel:  model.Lv0,
 	}
 
 	if err := userService.Register(user); err != nil {
