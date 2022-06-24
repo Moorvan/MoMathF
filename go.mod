@@ -1,4 +1,4 @@
-module MoMathF
+module github.com/Moorvan/MoMathF
 
 go 1.18
 
