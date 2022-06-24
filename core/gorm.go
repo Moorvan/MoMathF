@@ -1,10 +1,10 @@
 package core
 
 import (
-	"MoMathF/MathFServer/model"
-	"MoMathF/global"
-	mlog "MoMathF/mo-log"
 	"errors"
+	"github.com/Moorvan/MoMathF/MathFServer/model"
+	"github.com/Moorvan/MoMathF/global"
+	mlog "github.com/Moorvan/MoMathF/mo-log"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

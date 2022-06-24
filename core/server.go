@@ -1,9 +1,9 @@
 package core
 
 import (
-	"MoMathF/MathFServer"
-	"MoMathF/global"
 	"fmt"
+	"github.com/Moorvan/MoMathF/MathFServer"
+	"github.com/Moorvan/MoMathF/global"
 )
 
 func RunServer() {

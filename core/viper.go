@@ -1,9 +1,9 @@
 package core
 
 import (
-	"MoMathF/global"
-	mlog "MoMathF/mo-log"
 	"flag"
+	"github.com/Moorvan/MoMathF/global"
+	mlog "github.com/Moorvan/MoMathF/mo-log"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 )

@@ -1,11 +1,11 @@
 package api
 
 import (
-	"MoMathF/MathFServer/model"
-	resp "MoMathF/MathFServer/model/common/response"
-	"MoMathF/MathFServer/model/request"
-	"MoMathF/MathFServer/model/response"
 	"errors"
+	"github.com/Moorvan/MoMathF/MathFServer/model"
+	resp "github.com/Moorvan/MoMathF/MathFServer/model/common/response"
+	"github.com/Moorvan/MoMathF/MathFServer/model/request"
+	"github.com/Moorvan/MoMathF/MathFServer/model/response"
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v4"
 )

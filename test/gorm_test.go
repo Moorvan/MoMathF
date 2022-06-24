@@ -1,8 +1,8 @@
 package test
 
 import (
-	"MoMathF/MathFServer/model"
-	"MoMathF/core"
+	"github.com/Moorvan/MoMathF/MathFServer/model"
+	"github.com/Moorvan/MoMathF/core"
 	"gorm.io/gorm"
 	"testing"
 )

@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"MoMathF/global"
-	mlog "MoMathF/mo-log"
+	"github.com/Moorvan/MoMathF/global"
+	mlog "github.com/Moorvan/MoMathF/mo-log"
 	"github.com/atotto/clipboard"
 )
 

@@ -1,8 +1,8 @@
 package MathFServer
 
 import (
-	"MoMathF/MathFServer/router"
-	"MoMathF/global"
+	"github.com/Moorvan/MoMathF/MathFServer/router"
+	"github.com/Moorvan/MoMathF/global"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	jwtware "github.com/gofiber/jwt/v3"

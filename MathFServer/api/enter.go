@@ -1,7 +1,7 @@
 package api
 
 import (
-	"MoMathF/MathFServer/service"
+	"github.com/Moorvan/MoMathF/MathFServer/service"
 	"github.com/go-playground/validator/v10"
 )
 

@@ -1,6 +1,6 @@
 package response
 
-import "MoMathF/MathFServer/model"
+import "github.com/Moorvan/MoMathF/MathFServer/model"
 
 type UpdatedUser struct {
 	UUID     string         `json:"uuid"`

@@ -1,8 +1,8 @@
 package core
 
 import (
-	"MoMathF/MathFClient"
-	"MoMathF/global"
+	"github.com/Moorvan/MoMathF/MathFClient"
+	"github.com/Moorvan/MoMathF/global"
 )
 
 func NewClient() *MathFClient.MoMathFClient {

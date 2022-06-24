@@ -1,9 +1,9 @@
 package MathFClient
 
 import (
-	mlog "MoMathF/mo-log"
 	"encoding/json"
 	"errors"
+	mlog "github.com/Moorvan/MoMathF/mo-log"
 	"github.com/go-resty/resty/v2"
 )
 

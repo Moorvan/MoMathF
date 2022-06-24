@@ -1,7 +1,7 @@
 package router
 
 import (
-	"MoMathF/MathFServer/api"
+	"github.com/Moorvan/MoMathF/MathFServer/api"
 	"github.com/gofiber/fiber/v2"
 )
 

@@ -1,9 +1,9 @@
 package main
 
 import (
-	"MoMathF/core"
-	"MoMathF/global"
-	mlog "MoMathF/mo-log"
+	"github.com/Moorvan/MoMathF/core"
+	"github.com/Moorvan/MoMathF/global"
+	mlog "github.com/Moorvan/MoMathF/mo-log"
 )
 
 var (

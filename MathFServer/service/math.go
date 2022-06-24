@@ -1,8 +1,8 @@
 package service
 
 import (
-	"MoMathF/MathFServer/model"
-	"MoMathF/global"
+	"github.com/Moorvan/MoMathF/MathFServer/model"
+	"github.com/Moorvan/MoMathF/global"
 )
 
 type MathService struct{}

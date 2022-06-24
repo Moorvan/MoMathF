@@ -1,11 +1,11 @@
 package test
 
 import (
-	"MoMathF/MathFClient"
-	"MoMathF/core"
-	"MoMathF/global"
-	mlog "MoMathF/mo-log"
 	"encoding/json"
+	"github.com/Moorvan/MoMathF/MathFClient"
+	"github.com/Moorvan/MoMathF/core"
+	"github.com/Moorvan/MoMathF/global"
+	mlog "github.com/Moorvan/MoMathF/mo-log"
 	"github.com/go-resty/resty/v2"
 	"testing"
 )

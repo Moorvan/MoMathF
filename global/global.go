@@ -1,8 +1,8 @@
 package global
 
 import (
-	"MoMathF/MathFClient"
-	"MoMathF/config"
+	"github.com/Moorvan/MoMathF/MathFClient"
+	"github.com/Moorvan/MoMathF/config"
 	"github.com/spf13/viper"
 	"gorm.io/gorm"
 )
