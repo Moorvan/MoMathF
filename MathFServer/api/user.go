@@ -5,7 +5,6 @@ import (
 	resp "MoMathF/MathFServer/model/common/response"
 	"MoMathF/MathFServer/model/request"
 	"MoMathF/MathFServer/model/response"
-	"MoMathF/MathFServer/service"
 	"MoMathF/MathFServer/utils"
 	"MoMathF/global"
 	"github.com/gofiber/fiber/v2"
@@ -15,8 +14,6 @@ import (
 )
 
 type UserAPI struct{}
-
-var userService = service.ServiceGroupApp.UserService
 
 func (u *UserAPI) Login(ctx *fiber.Ctx) error {
 	var r request.Login
@@ -38,8 +35,12 @@ func (u *UserAPI) Login(ctx *fiber.Ctx) error {
 			return resp.FailWithMsg(err.Error(), ctx)
 		}
 		return resp.OkWithData(response.Login{
-			Token: token,
-			UUID:  rUser.UUID,
+			Token:     token,
+			UUID:      rUser.UUID,
+			UserName:  rUser.UserName,
+			Email:     rUser.Email,
+			Remaining: rUser.Remaining,
+			VipLevel:  rUser.VipLevel,
 		}, ctx)
 	}
 }

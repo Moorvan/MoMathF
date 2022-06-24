@@ -22,6 +22,7 @@ func New() *fiber.App {
 	}))
 	{
 		router.RouterGroupApp.InitMathRouter(privateGroup)
+		router.RouterGroupApp.InitAdminRouter(privateGroup)
 	}
 	return app
 }

@@ -3,7 +3,6 @@ package api
 import (
 	"MoMathF/MathFServer/model"
 	"MoMathF/MathFServer/model/common/response"
-	"MoMathF/MathFServer/service"
 	"MoMathF/global"
 	"errors"
 	"github.com/gofiber/fiber/v2"
@@ -12,8 +11,6 @@ import (
 )
 
 type MathAPI struct{}
-
-var mathService = service.ServiceGroupApp.MathService
 
 func (api *MathAPI) GetLatexFromPic(ctx *fiber.Ctx) error {
 	uuid, err := api.checkUser(ctx)

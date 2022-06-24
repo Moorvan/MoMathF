@@ -32,3 +32,12 @@ func (service *UserService) Login(user model.User) (model.User, error) {
 	}
 	return u, nil
 }
+
+func (service *UserService) GetUserByUUID(uuid string) (model.User, error) {
+	db := global.GB_DB
+	var u model.User
+	if err := db.Model(&u).Where("uuid = ?", uuid).First(&u).Error; err != nil {
+		return u, errors.New("user not exists")
+	}
+	return u, nil
+}
